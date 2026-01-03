@@ -45,7 +45,7 @@ header{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem 2rem;
+        padding: 1.25rem;
     }
 }
 header nav ul{
@@ -57,7 +57,12 @@ header nav ul{
         font-size: 1.125rem;
         font-weight: 400;
         color: var(--fg-secondary);
+        padding: .5rem .75rem;
     }
+    li:hover{
+        color: var(--black);
+    }
+
 }
 header nav button.cta{
     background-color: var(--primary);
@@ -71,15 +76,46 @@ header nav button.cta{
     font-size: 1.125rem;
     font-weight: 500;
     font-family: inherit;
+    position: relative;
+    &:hover{
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    }
 }
+header nav button.cta::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 50px;
+    z-index: 0;
+    clip-path: circle(.1% at 100% 49%);
+    transition: clip-path 0.5s ease-in-out;
+}
+header nav button.cta:hover::before{
+    clip-path: circle(150% at 100% 49%);
+}
+header nav button.cta:hover span{
+    color: var(--primary);
+    transition: color 0.5s ease-in-out;
+}
+header nav button.cta span{
+    position: relative;
+    color: white; 
+    z-index: 1;
+}
+
 main{
     width: 100%;
 }
 main section.hero{
     height: 110vh;
     width: 100%;
-    padding-top: 10vh;
+    padding-top: 20vh;
     /* padding: 10vh 10vw; */
+    position: relative;
 }
 
 main section.hero .hero-content{
@@ -153,5 +189,44 @@ main section.hero .hero-content .cta-container button{
             height: 1.5rem;
             background-color: var(--border);
         }
+    }
+}
+
+main section.hero .hero-footer-imgs{
+    width: 100%;
+    height: 45vh;
+    position: absolute;
+    bottom: 0;
+    overflow-y: hidden;
+}
+main section.hero .hero-footer-imgs img{
+    position: absolute;
+    width: 100%;
+    object-fit: cover;
+    bottom: -150%;
+    filter: grayscale(80%);
+    animation: anim-up 1s ease-out forwards calc(var(--i) * .3s);
+}
+main section.hero .hero-birds-img{
+    width: min(95%, 1400px);
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 1;
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+    border: 2px solid red;
+}
+main section.hero .hero-birds-img img{
+    width: 100%;
+    object-fit: contain;
+}
+
+@keyframes anim-up {
+    to{
+        bottom: 0%;
     }
 }
