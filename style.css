@@ -240,7 +240,7 @@ main section.hero .hero-footer-imgs img {
   object-fit: cover;
   bottom: -150%;
   filter: grayscale(80%);
-  animation: anim-up 1s ease-out forwards calc(var(--i) * 0.3s);
+  animation: anim-up 1s ease-out forwards calc(var(--i) * 0.1s);
 }
 main section.hero .hero-birds-img {
   width: min(95%, 1400px);
@@ -250,14 +250,41 @@ main section.hero .hero-birds-img {
   transform: translate(-50%, 0%);
   z-index: 1;
   pointer-events: none;
-  img {
+  &>img {
     width: 100%;
     object-fit: cover;
+  }
+  .two-birds{
+    position: absolute;
+    top: 40px;
+    left: 14%;
+    width: 64%;
+    aspect-ratio: 908/122;
+    /* border: 2px solid salmon; */
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    img.two-birds-img{
+      width: 40px;
+      transform: translateY(40vh);
+      opacity: 0;
+      animation: fade-up 1s linear forwards;
+    }
+    img.two-birds-img:last-child{
+      align-self: end;
+    }
   }
 }
 main section.hero .hero-birds-img img {
   width: 100%;
   object-fit: contain;
+}
+
+@keyframes fade-up {
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 main section.hero .bird-i {
