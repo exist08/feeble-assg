@@ -55,6 +55,9 @@ header {
     justify-content: space-between;
     padding: 1.25rem;
     padding-left: 1.5rem;
+    .nav-menu{
+        display: none;
+    }
   }
 }
 header nav ul {
@@ -144,6 +147,7 @@ main section.hero .hero-content {
     padding: 5px 8px;
     border-radius: 50px;
     background: #fff;
+    display: flex;
   }
   h1 {
     font-size: 4rem;
@@ -162,12 +166,30 @@ main section.hero .hero-content {
     line-height: 1.5;
     text-align: center;
     color: var(--black);
+    padding-inline: 2rem;
   }
   .cta-container {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
+}
+main section.hero .hero-content .brand-line .dots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+    gap: .5rem;
+    padding: .5rem;
+    border-radius: 10px;
+    margin-right: .5rem;
+    .dot{
+        display: inline-block;
+        width: 3.5px;
+        height: 3.5px;
+        border-radius: 10px;
+        background: white;
+    }
 }
 main section.hero .hero-content .cta-container button {
   padding: 0.75rem 1.25rem;
@@ -265,17 +287,11 @@ main section.hero .bird-i img {
 }
 
 @keyframes anim-bird-flying {
-  from {
-    transform: translateX(-20vw) translateY(-10vh);
-  }
   to {
     transform: translateX(100vw) translateY(-50vh);
   }
 }
 @keyframes anim-bird-flying-ii {
-  from {
-    transform: translateX(20vw) translateY(-10vh);
-  }
   to {
     transform: translateX(-100vw) translateY(-50vh);
   }
@@ -328,6 +344,9 @@ main section.hero .scroll-down {
         h1 {
             font-size: 3.5rem;
         }
+        p{
+            font-size: 1.5rem;
+        }
     }
     header nav{
         padding: 1rem;
@@ -342,38 +361,73 @@ main section.hero .scroll-down {
             font-size: 1rem;
         }
     }
+    main section.hero .hero-birds-img {
+        width: min(95%, 1400px);
+        top: 50dvh;
+        pointer-events: none;
+    }
 }
 @media screen and (max-width: 768px) {
     main section.hero {
         height: 100dvh;
-        padding-top: 10dvh;
+        padding-top: 20dvh;
     }
     main section.hero .hero-content {
         h1 {
             font-size: 2.5rem;
+            padding-inline: 1vw;
+        }
+        p{
+            font-size: 1.25rem;
         }
     }
     main section.hero .hero-content .cta-container {
         flex-direction: column;
     }
+    header{
+        background: transparent;
+        box-shadow: none;
+    }
     header nav{
         width: fit-content;
+        background: white;
+        border-radius: inherit;
+        .logo{
+            position: relative;
+            z-index: 10;
+        }
     }
     header nav .nav-links{
+        transform: translateY(-150%);
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        transition: .5s;
         display: flex;
         flex-direction: column;
         position: absolute;
         top: 0;
         left: 0;
-        background: lime;
+        background: #ffe;
         width: 100%;
-        padding: 4rem;
+        padding: 8rem 4rem 4rem;
         gap: 2rem;
+        box-shadow: 0 50px 1000px rgba(0, 0, 0, 0.5);
         ul{
             flex-direction: column;
             text-align: center;
         }
-        display: none;
+        ul li{
+            font-size: 1.5rem;
+            color: var(--black);
+        }
+        button.cta {
+            font-size: 1.5rem;
+        }
+    }
+    header nav .nav-links.active{
+        transform: translateY(0%);
+        transition: .5s;
     }
     header nav .nav-menu{
         display: flex;
@@ -381,13 +435,38 @@ main section.hero .scroll-down {
         justify-content: center;
         position: absolute;
         top: 0;
-        right: 0;
-        background: red;
+        right: 2%;
         height: 100%;
+        z-index: 10;
         .nav-menu-icon{
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--fg-primary);
             cursor: pointer;
         }
     }
+}
+@media screen and (max-width: 640px) {
+    main section.hero .hero-content {
+        h1 {
+            font-size: 2.5rem;
+            padding-inline: 1vw;
+        }
+        p{
+            font-size: 1rem;
+        }
+    }
+    main section.hero .hero-birds-img {
+        width: min(95%, 1400px);
+        top: 45dvh;
+        pointer-events: none;
+    }
+    main section.hero .bird-i {
+        transform: translateX(-40vw) translateY(-10vh);
+        animation: anim-bird-flying 4s ease-in forwards 2s;
+      }
+      
+      main section.hero .bird-ii {
+        transform: translateX(40vw) translateY(-10vh);
+        animation: anim-bird-flying-ii 4s ease-in forwards 2s;
+      }
 }
